@@ -1,0 +1,27 @@
+<h1> List Reorders</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Inventory amount</th>
+      <th>status</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="products">
+    <%= for reorder <- @reorders do %>
+      <tr id={"reorder-#{reorder.id}"}>
+        <td><%= reorder.product.name %></td>
+        <td><%= reorder.product.inventory_amount %></td>
+        <td><%= reorder.status %></td>
+        <td>
+          <%# <button phx-click="open" phx-target="#modal-one" type="button">Restock</button> %>
+          <%= if reorder.status == "unprocessed" do %>
+           <%= link "Restock", to: "#", phx_click: "restock", phx_value_id: reorder.product.id, class: "btn btn-link" %>
+           <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
