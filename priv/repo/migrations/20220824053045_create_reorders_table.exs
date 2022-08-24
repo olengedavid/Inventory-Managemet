@@ -5,6 +5,8 @@ defmodule InventoryManagement.Repo.Migrations.CreateReordersTable do
     create table(:reorders) do
       add :status, :string
       add :product_id, references(:products)
+
+      timestamps()
     end
 
     create unique_index(:reorders, [:product_id, :status])

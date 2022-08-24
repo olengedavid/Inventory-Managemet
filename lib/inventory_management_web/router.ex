@@ -8,6 +8,7 @@ defmodule InventoryManagementWeb.Router do
     plug :put_root_layout, {InventoryManagementWeb.LayoutView, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    # plug InventoryManagementWeb.Auth
   end
 
   pipeline :api do

@@ -7,6 +7,8 @@ defmodule InventoryManagement.Products.Sale do
   schema "sales" do
     field :quantity, :integer
     belongs_to :product, Product, foreign_key: :product_id
+
+    timestamps()
   end
 
   def changeset(sales, attrs \\ %{}) do

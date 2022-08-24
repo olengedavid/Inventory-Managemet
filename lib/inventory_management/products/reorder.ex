@@ -7,6 +7,8 @@ defmodule InventoryManagement.Products.Reorder do
   schema "reorders" do
     field :status, :string
     belongs_to :product, Product, foreign_key: :product_id
+
+    timestamps()
   end
 
   def changeset(reorder, attrs \\ %{}) do

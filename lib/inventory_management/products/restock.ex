@@ -7,6 +7,8 @@ defmodule InventoryManagement.Products.Restock do
   schema "restocks" do
     field :quantity, :integer
     belongs_to :product, Product, foreign_key: :product_id
+
+    timestamps()
   end
 
   def changeset(restock, attrs \\ %{}) do

@@ -132,13 +132,13 @@ defmodule InventoryManagement.Products do
 
   def restock(%Product{} = product) do
     with {:ok, _anything} <-
-      Repo.transaction fn ->
-        create_restock(%{product_id: product.id, quantity: @restocked_quantity})
-        update_product(product, %{inventory_amount: @restocked_quantity})
-      end do
-        reorder = get_reorder_by(product.id, "unprocessed")
-        update_reorder(reorder, %{status: "processed"})
-      end
+           Repo.transaction(fn ->
+             create_restock(%{product_id: product.id, quantity: @restocked_quantity})
+             update_product(product, %{inventory_amount: @restocked_quantity})
+           end) do
+      reorder = get_reorder_by(product.id, "unprocessed")
+      update_reorder(reorder, %{status: "processed"})
+    end
   end
 
   def create_reorder(attrs \\ %{}) do
